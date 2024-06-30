@@ -65,9 +65,14 @@ run:
 clean:
 	@make -C "${BUILD_DIR}" clean
 
-prof-linux:
-	@${BIN_FILE} ${ARGS}
-	@gprof ${BIN_FILE} ${ARGS} > perf.log
+perf-record:
+	sudo perf record -gs ${ARGS}
+
+perf-report:
+	sudo perf report --sort time perf.data
+
+gprof-report:
+	gprof ${ARGS} gmon.out > perf.log
 
 remote-debug:
 	gdb-server '-ex "set substitute-path ./debian/build/deb/ /home/greyhound/Git/glib/_build/glib/" ${PROJ_NAME_FILE}'

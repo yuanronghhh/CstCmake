@@ -1,0 +1,13 @@
+*.cc
+*.exe
+*.bin
+*.hh.*
+.lex
+*.yy.*
+*.log
+*.out
+*.spv
+*.swp
+*.yy
+tags
+.cache

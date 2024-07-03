@@ -42,6 +42,7 @@ if(USE_DEBUGGER)
 endif()
 
 # find_package(sdl2 REQUIRED)
+find_package(sdl3 REQUIRED)
 find_package(system REQUIRED)
 
 find_package(glib REQUIRED)
@@ -65,7 +66,6 @@ add_definitions("/WX")
 set(ASAN_DLL "G:/Download/vs2022IDE/VC/Tools/MSVC/14.39.33519/bin/Hostx64/x64/clang_rt.asan_dynamic-x86_64.dll")
 
 if(USE_LLVM)
-  set(CMAKE_C_FLAGS "-g")
   add_definitions("-Wno-unused-function")
   add_definitions("-Wno-unused-variable")
 

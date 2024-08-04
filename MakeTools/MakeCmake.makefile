@@ -7,6 +7,7 @@ BUILD_TYPE:=Debug
 BIN_SURFIX:=
 ARGS:=
 BIN_FILE:=
+BUILD_CMAKE_ARGS:=
 DEBUGGER:=gdb
 
 ifeq ($(OS), Linux)

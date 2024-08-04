@@ -22,6 +22,8 @@ endif()
 
 if(WIN32)
   include(${CMAKE_CURRENT_LIST_DIR}/config/platform_win32.cmake)
+elseif(ANDROID)
+  include(${CMAKE_CURRENT_LIST_DIR}/config/platform_android.cmake)
 elseif(UNIX)
   include(${CMAKE_CURRENT_LIST_DIR}/config/platform_unix.cmake)
 elseif(MSYS)

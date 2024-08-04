@@ -66,7 +66,7 @@ clean:
 	@make -C "${BUILD_DIR}" clean
 
 perf-record:
-	sudo perf record -gs ${ARGS}
+	sudo perf record --call-graph dwarf -gs ${ARGS}
 
 perf-report:
 	sudo perf report --sort time perf.data

@@ -26,10 +26,6 @@ function(release_copy_files
       DESTINATION ${LIBDIR}/${target_name}/lib
       FILES_MATCHING
       PATTERN "*.lib")
-    file(COPY ${target_bin}/${CMAKE_BUILD_TYPE}/${target_name}.dll
-      DESTINATION ${LIBDIR}/${target_name}/bin
-      FILES_MATCHING
-      PATTERN "*.dll")
   elseif(UNIX)
     file(COPY ${target_bin}/lib${target_name}.a
       DESTINATION ${LIBDIR}/${target_name}/lib

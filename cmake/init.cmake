@@ -14,10 +14,8 @@ endif()
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
   set(DEBUG 1)
-  set(CMAKE_BUILD_TYPE "Debug" CACHE BOOL "" FORCE)
 else()
   set(DEBUG 0)
-  set(CMAKE_BUILD_TYPE "Release" CACHE BOOL "" FORCE)
 endif()
 
 if(WIN32)

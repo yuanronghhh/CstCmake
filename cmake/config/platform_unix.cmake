@@ -1,14 +1,16 @@
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
-  if(USE_SANITIZER)
-    set(CMAKE_C_FLAGS "-Wall -g -fsanitize=address")
-  endif()
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g")
 
-  log("${CMAKE_C_FLAGS}")
+  if(USE_SANITIZER)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=address")
+  endif()
 else()
-  set(CMAKE_C_FLAGS "-O3")
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3")
 endif()
+
+log("${CMAKE_C_FLAGS}")
 
 find_package(PkgConfig)
 

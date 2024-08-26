@@ -206,7 +206,7 @@ function(target_copy_release_files
     name
 )
   install(DIRECTORY ./
-    DESTINATION ${LIBDIR}/${name}/include
+    DESTINATION ${LIBDIR}/${name}/include/${name}
     FILES_MATCHING
     PATTERN "*.h"
     PATTERN ".git" EXCLUDE

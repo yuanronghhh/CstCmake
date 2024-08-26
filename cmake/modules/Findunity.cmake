@@ -8,13 +8,13 @@ set(search_dirs
 FIND_PATH(UNITY_INCLUDE_DIR
   NAMES unity.h
   HINTS ${search_dirs}
-  PATH_SUFFIXES unity/include
+  PATH_SUFFIXES Unity/include
 )
 
 FIND_LIBRARY(UNITY_LIBRARY
-  NAMES unity
+  NAMES Unity
   HINTS ${search_dirs}
-  PATH_SUFFIXES lib64 unity/lib
+  PATH_SUFFIXES lib64 Unity/lib
 )
 
 INCLUDE(FindPackageHandleStandardArgs)

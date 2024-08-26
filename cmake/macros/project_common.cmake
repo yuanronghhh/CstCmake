@@ -205,16 +205,23 @@ endmacro()
 function(target_copy_release_files
     name
 )
-  add_custom_command(TARGET ${name} POST_BUILD
-    COMMAND ${CMAKE_COMMAND}
-    -Dtarget_name=${name}
-    -Dtarget_path=${CMAKE_CURRENT_SOURCE_DIR}
-    -Dtarget_bin=${CMAKE_CURRENT_BINARY_DIR}
-    -DLIBDIR=${LIBDIR}
-    -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
-    -P ${CMAKE_MODULE_PATH}/../extern/release.cmake
-    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-  )
+  install(DIRECTORY ./
+    DESTINATION ${LIBDIR}/${name}/include
+    FILES_MATCHING
+    PATTERN "*.h"
+    PATTERN ".git" EXCLUDE
+    )
+
+  if(WIN32)
+    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/${name}.lib
+      DESTINATION ${LIBDIR}/${name}/lib)
+    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/${name}.dll
+      DESTINATION ${LIBDIR}/${name}/bin)
+  elseif(UNIX)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/lib${name}.a
+      DESTINATION ${LIBDIR}/${name}/lib)
+  endif()
+
 endfunction()
 
 function(target_copy_files)

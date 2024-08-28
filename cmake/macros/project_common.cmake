@@ -205,27 +205,26 @@ endmacro()
 function(target_copy_release_files
     name)
 
-  log("INSTALL DIR: ${CMAKE_INSTALL_PREFIX}")
+  set(CMAKE_INSTALL_PREFIX "${LIBDIR}")
+
   install(DIRECTORY ./
-    DESTINATION ${LIBDIR}/${name}/include/${name}
+    DESTINATION "${CMAKE_INSTALL_PREFIX}/${name}/include/${name}"
     FILES_MATCHING
     PATTERN "*.h"
-    PATTERN ".git" EXCLUDE
-    )
+    PATTERN ".git" EXCLUDE)
 
   if(WIN32)
-    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}
-      DESTINATION ${LIBDIR}/${name}/lib)
-
     if(USE_SHARED_LIBRARY)
-      install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/${name}.dll
-        DESTINATION ${CMAKE_INSTALL_PREFIX}/${name}/bin)
+      install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/${name}.dll"
+        DESTINATION "${CMAKE_INSTALL_PREFIX}/${name}/bin")
+    else()
+      install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/${name}.lib"
+        DESTINATION "${CMAKE_INSTALL_PREFIX}/${name}/lib")
     endif()
   elseif(UNIX)
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/lib${name}.a
-      DESTINATION ${CMAKE_INSTALL_PREFIX}/${name}/lib)
+    install(FILES "${CMAKE_CURRENT_BINARY_DIR}/lib${name}.a"
+      DESTINATION "${CMAKE_INSTALL_PREFIX}/${name}/lib")
   endif()
-
 endfunction()
 
 function(target_copy_files)

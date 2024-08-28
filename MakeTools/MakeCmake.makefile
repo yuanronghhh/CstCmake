@@ -40,6 +40,9 @@ re-config:
 	@rm -rf build/CMakeCache.txt
 	@make config
 
+install:
+	@cmake --install ./build
+
 build-linux:
 	@${MAKE} -C "$(BUILD_DIR)" -s -j8
 
@@ -108,4 +111,4 @@ check-thread:
 		--suppressions=cst.supp  \
 		${ARGS}
 
-.PHONY: editor-config re-config config clean build-all build-tags
+.PHONY: editor-config re-config config clean build-all build-tags install

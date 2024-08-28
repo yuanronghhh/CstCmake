@@ -7,13 +7,13 @@ set(search_dirs
 FIND_PATH(SDL3_INCLUDE_DIR
   NAMES SDL3/SDL.h
   HINTS ${search_dirs}
-  PATH_SUFFIXES sdl3/include
+  PATH_SUFFIXES SDL3/include
 )
 
 FIND_LIBRARY(SDL3_LIBRARY
-  NAMES SDL3.lib
+  NAMES SDL3
   HINTS ${search_dirs}
-  PATH_SUFFIXES lib64 lib sdl3/lib
+  PATH_SUFFIXES lib64 lib SDL3/lib
 )
 
 set(SDL3_FILES "")

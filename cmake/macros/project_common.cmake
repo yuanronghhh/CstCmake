@@ -203,8 +203,9 @@ macro(define_include_var
 endmacro()
 
 function(target_copy_release_files
-    name
-)
+    name)
+
+  log("INSTALL DIR: ${CMAKE_INSTALL_PREFIX}")
   install(DIRECTORY ./
     DESTINATION ${LIBDIR}/${name}/include/${name}
     FILES_MATCHING
@@ -213,13 +214,16 @@ function(target_copy_release_files
     )
 
   if(WIN32)
-    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/${name}.lib
+    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}
       DESTINATION ${LIBDIR}/${name}/lib)
-    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/${name}.dll
-      DESTINATION ${LIBDIR}/${name}/bin)
+
+    if(USE_SHARED_LIBRARY)
+      install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/${name}.dll
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/${name}/bin)
+    endif()
   elseif(UNIX)
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/lib${name}.a
-      DESTINATION ${LIBDIR}/${name}/lib)
+      DESTINATION ${CMAKE_INSTALL_PREFIX}/${name}/lib)
   endif()
 
 endfunction()

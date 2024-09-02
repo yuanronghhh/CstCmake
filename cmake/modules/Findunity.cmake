@@ -6,7 +6,7 @@ set(search_dirs
 )
 
 FIND_PATH(UNITY_INCLUDE_DIR
-  NAMES unity.h
+  NAMES Unity/unity.h
   HINTS ${search_dirs}
   PATH_SUFFIXES Unity/include
 )

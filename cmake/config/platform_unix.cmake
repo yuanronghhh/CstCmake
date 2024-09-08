@@ -10,8 +10,6 @@ else()
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3")
 endif()
 
-log("${CMAKE_C_FLAGS}")
-
 find_package(PkgConfig)
 
 pkg_check_modules(X11 REQUIRED x11)
@@ -43,32 +41,6 @@ find_package(cglm REQUIRED)
 find_package(system REQUIRED)
 
 set(MPG123_LIBRARIES "mpg123")
-
-set(GTK_LIBRARIES
-  "/media/greyhound/Storage/Debian/gtk-4.6.3/_build/gtk/libgtk-4.so"
-  "/media/greyhound/Storage/Git/glib/_build/glib/libglib-2.0.so"
-  "/media/greyhound/Storage/Debian/gtk-4.6.3/_build/gdk/libgdk.a"
-  "/media/greyhound/Storage/Git/glib/_build/gio/libgio-2.0.so"
-  "/media/greyhound/Storage/Git/glib/_build/gobject/libgobject-2.0.so"
-  # gtk-4
-  pangocairo-1.0
-  pango-1.0
-  harfbuzz
-  gdk_pixbuf-2.0
-  cairo-gobject
-  cairo
-  graphene-1.0
-  gio-2.0
-  atk-1.0
-  epoxy
-  xkbcommon
-  gdk-3
-  wayland-client
-  wayland-egl
-  gobject-2.0
-  glib-2.0
-  fribidi
-  )
 
 set(ADDTIONAL_LIBRARIES "-lpthread -lexpat -lm -lrt -lrt -luuid")
 list(APPEND GTK_LIBRARIES ${ADDTIONAL_LIBRARIES})

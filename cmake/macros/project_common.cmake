@@ -248,6 +248,35 @@ function(target_copy_files)
   endif()
 endfunction()
 
+
+macro(found_module_one
+    components
+    prefix_name
+   suffix_name)
+
+  STRING(TOUPPER ${prefix_name} PREFIX_NAME)
+
+  FOREACH(COMPONENT ${components})
+    STRING(TOUPPER ${COMPONENT} COMPONENT_NAME)
+
+    FIND_LIBRARY(${PREFIX_NAME}_${COMPONENT_NAME}_LIBRARY
+      NAMES "${COMPONENT}${suffix}"
+      HINTS ${search_dirs}
+      PATH_SUFFIXES lib64 lib ${prefix_name}/lib)
+
+    if(WIN32)
+      FIND_FILE(${PREFIX_NAME}_${COMPONENT_NAME}_FILE
+        NAMES "${COMPONENT}${suffix_name}"
+        HINTS ${search_dirs}
+        PATH_SUFFIXES ${prefix_name}/bin)
+
+      LIST(APPEND ${PREFIX_NAME}_FILES "${${PREFIX_NAME}_${COMPONENT_NAME}_FILE}")
+    endif()
+
+    LIST(APPEND ${PREFIX_NAME}_LIBRARY "${${PREFIX_NAME}_${COMPONENT_NAME}_LIBRARY}")
+  ENDFOREACH()
+endmacro()
+
 macro(found_module
     components
     prefix_name
@@ -269,10 +298,10 @@ macro(found_module
         HINTS ${search_dirs}
         PATH_SUFFIXES ${prefix_name}/bin)
 
-      LIST(APPEND ${PREFIX_NAME}_FILES "${PREFIX_NAME}_${COMPONENT_NAME}_FILE")
+      LIST(APPEND ${PREFIX_NAME}_FILES "${${PREFIX_NAME}_${COMPONENT_NAME}_FILE}")
     endif()
 
-    LIST(APPEND ${PREFIX_NAME}_LIBRARY "${PREFIX_NAME}_${COMPONENT_NAME}_LIBRARY")
+    LIST(APPEND ${PREFIX_NAME}_LIBRARY "${${PREFIX_NAME}_${COMPONENT_NAME}_LIBRARY}")
   ENDFOREACH()
 endmacro()
 

@@ -10,11 +10,26 @@ FIND_PATH(FFMPEG_INCLUDE_DIR
   PATH_SUFFIXES ffmpeg/include
 )
 
-FIND_LIBRARY(FFMPEG_LIBRARY
-  NAMES avcodec.lib
-  HINTS ${search_dirs}
-  PATH_SUFFIXES lib64 lib ffmpeg/lib
-)
+if(UNIX)
+  found_module_one(
+    "avcodec;swscale;avdevice;avutil;avformat;avcodec;avfilter;swresample"
+    "ffmpeg"
+    ""
+  )
+
+LIST(APPEND FFMPEG_LIBRARY
+    "m"
+    "atomic"
+    "bz2"
+    "z"
+    "pthread"
+    "lzma"
+    "drm"
+    "X11"
+    "Xv"
+    "Xext"
+    )
+endif()
 
 set(FFMPEG_FILES "")
 IF(WIN32)

@@ -11,6 +11,14 @@ FIND_PATH(GSTREAMER_INCLUDE_DIR
   PATH_SUFFIXES include/gstreamer gstreamer/include/gstreamer-1.0
 )
 
+if(UNIX)
+  found_module_one(
+    "gstreamer-1.0;gstvideo-1.0"
+    "gstreamer"
+    ""
+  )
+endif()
+
 if (WIN32)
   set(GSTREAMER_LIBS
     "gstallocators-1.0.lib"

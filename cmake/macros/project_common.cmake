@@ -80,7 +80,7 @@ function(add_deps_N
     "${INNER_LIBS}"
     "${EXTERNAL_INCS}"
     "${EXTERNAL_LIBS}"
-    "")
+    "${ADDTIONAL_LIBRARIES}")
 endfunction()
 
 function(include_dep_dirs

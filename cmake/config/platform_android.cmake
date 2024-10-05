@@ -3,3 +3,7 @@ if(NOT EXISTS "${LIBDIR}/")
 endif()
 
 add_definitions("-D__ANDROID__=1")
+set(ANDROID_LIBRARIES
+        "android"
+        "log"
+)

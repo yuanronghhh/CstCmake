@@ -3,4 +3,7 @@ if(NOT EXISTS "${LIBDIR}/")
 endif()
 
 add_definitions("-D__ANDROID__=1")
-add_compile_options("-std=gnu99")
+set(ANDROID_LIBRARIES
+  "android"
+  "log"
+)

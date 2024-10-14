@@ -74,7 +74,7 @@ if(USE_LLVM)
 else()
   add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
   add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
-  add_definitions("/wd\"4100\" /wd\"4206\" /wd\"4201\" /wd\"4996\"")
+  add_definitions("/wd\"4100\" /wd\"4206\" /wd\"4201\" /wd\"4996\" /wd\"4819\"")
 
   set(ADDTIONAL_LIBRARIES
     kernel32.lib

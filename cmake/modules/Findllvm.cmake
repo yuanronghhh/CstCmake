@@ -4,7 +4,6 @@ if(NOT ${LLVM_BIN} STREQUAL "")
 endif()
 set(LLVM_HOME "${LLVM_BIN}/..")
 
-log("${LLVM_HOME}")
 set(search_dirs
   ${LIBDIR}
   ${LLVM_HOME}

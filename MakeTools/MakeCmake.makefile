@@ -67,7 +67,7 @@ run:
 	@${ARGS}
 
 clean:
-	@make -C "${BUILD_DIR}" clean
+	@cmake --build "${BUILD_DIR}" --target clean
 
 perf-record:
 	sudo perf record --call-graph dwarf -gs ${ARGS}

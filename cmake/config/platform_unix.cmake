@@ -2,8 +2,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_definitions("-D__UNIX__=1")
 
 if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
-  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g")
-
   if(USE_SANITIZER)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=address")
   endif()

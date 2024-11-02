@@ -164,17 +164,17 @@ endfunction()
 macro(add_cc_flags_custom_test
     name)
 
-  string(TOUPPER ${name} _name_upper)
+  string(TOUPPER ${name} _upper_name)
   message(STATUS "${name}")
-  if(DEFINED CMAKE_C_FLAGS_${_name_upper})
-    message(STATUS "Using custom CFLAGS: CMAKE_C_FLAGS_${_name_upper} in \"${CMAKE_CURRENT_SOURCE_DIR}\"")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${CMAKE_C_FLAGS_${_name_upper}}" ${ARGV1})
+  if(DEFINED CMAKE_C_FLAGS_${_upper_name})
+    message(STATUS "Using custom CFLAGS: CMAKE_C_FLAGS_${_upper_name} in \"${CMAKE_CURRENT_SOURCE_DIR}\"")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${CMAKE_C_FLAGS_${_upper_name}}" ${ARGV1})
   endif()
-  if(DEFINED CMAKE_CXX_FLAGS_${_name_upper})
-    message(STATUS "Using custom CXXFLAGS: CMAKE_CXX_FLAGS_${_name_upper} in \"${CMAKE_CURRENT_SOURCE_DIR}\"")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_${_name_upper}}" ${ARGV1})
+  if(DEFINED CMAKE_CXX_FLAGS_${_upper_name})
+    message(STATUS "Using custom CXXFLAGS: CMAKE_CXX_FLAGS_${_upper_name} in \"${CMAKE_CURRENT_SOURCE_DIR}\"")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_${_upper_name}}" ${ARGV1})
   endif()
-  unset(_name_upper)
+  unset(_upper_name)
 endmacro()
 
 function(add_dep_libs
@@ -305,3 +305,14 @@ macro(found_module
   ENDFOREACH()
 endmacro()
 
+function(add_use_name
+    name
+    value)
+  string(TOUPPER ${name} _upper_name)
+
+  set(USE_${_upper_name} ${value} CACHE BOOL "" FORCE)
+  set(defvar "-DUSE_${_upper_name}=${value}")
+  add_definitions(${defvar})
+
+  unset(_upper_name)
+endfunction()

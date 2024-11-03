@@ -43,6 +43,10 @@ re-config:
 install:
 	@cmake --install ./build
 
+release:
+	@make BUILD_TYPE=Release config
+	@make BUILD_TYPE=Release build-all
+
 build-linux:
 	@${MAKE} -C "$(BUILD_DIR)" -s -j8
 
@@ -111,4 +115,4 @@ check-thread:
 		--suppressions=cst.supp  \
 		${ARGS}
 
-.PHONY: editor-config re-config config clean build-all build-tags install
+.PHONY: editor-config re-config config clean build-all build-tags install release

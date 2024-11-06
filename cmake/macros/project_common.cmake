@@ -311,8 +311,6 @@ function(add_use_name
   string(TOUPPER ${name} _upper_name)
 
   set(USE_${_upper_name} ${value} CACHE BOOL "" FORCE)
-  set(defvar "-DUSE_${_upper_name}=${value}")
-  add_definitions(${defvar})
 
   unset(_upper_name)
 endfunction()

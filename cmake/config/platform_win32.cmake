@@ -38,7 +38,7 @@ find_package(gdkpixbuf REQUIRED)
 find_package(ffmpeg REQUIRED)
 find_package(skia REQUIRED)
 
-if(USE_DEBUGGER)
+if(USE_VLD)
   find_package(vld REQUIRED)
 endif()
 

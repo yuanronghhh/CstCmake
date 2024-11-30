@@ -38,6 +38,7 @@ find_package(gdkpixbuf REQUIRED)
 find_package(ffmpeg REQUIRED)
 find_package(skia REQUIRED)
 find_package(vld REQUIRED)
+find_package(nanovg REQUIRED)
 
 # find_package(sdl2 REQUIRED)
 find_package(sdl3 REQUIRED)

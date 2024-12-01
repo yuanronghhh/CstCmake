@@ -24,7 +24,7 @@ CMAKE_CONFIG = cmake $(BUILD_CMAKE_ARGS) \
                       -B"$(BUILD_DIR)" \
                       -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
 
-build-all: build-${PLATFORM}
+build-all: build-${PLATFORM}-prj
 
 config:
 	@${CMAKE_CONFIG}
@@ -48,12 +48,15 @@ release:
 	@make BUILD_TYPE=Release build-all
 
 build-linux:
+	@echo "[build] ..."
 	@${MAKE} -C "$(BUILD_DIR)" -s -j8
 
 build-win32:
+	@echo "[build win32] ..."
 	@cmake --build "${BUILD_DIR}" --config ${BUILD_TYPE}
 
 build-win32-prj:
+	@echo "[build project] ..."
 	@cmake --build "${BUILD_DIR}" --config ${BUILD_TYPE} --target ${PROJ_NAME}
 
 build-linux-prj:

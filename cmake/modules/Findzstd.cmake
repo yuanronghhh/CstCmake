@@ -1,0 +1,56 @@
+set(search_dirs
+  ${LIBDIR}
+  /usr/local
+  /usr
+)
+
+FIND_PATH(ZSTD_INCLUDE_DIR
+  NAMES zstd.h
+  HINTS ${search_dirs}
+  PATH_SUFFIXES zstd/include
+)
+
+FIND_LIBRARY(ZSTD_LIBRARY
+  NAMES zstd.lib
+  HINTS ${search_dirs}
+  PATH_SUFFIXES lib64 lib zstd/lib
+)
+
+set(ZSTD_FILES "")
+IF(WIN32)
+  set(ZSTD_FILE
+    "zstd.dll"
+  )
+  FOREACH(COMPONENT ${ZSTD_FILE})
+    STRING(TOUPPER ${COMPONENT} UPPERCOMPONENT)
+
+
+    FIND_FILE(ZSTD_${COMPONENT}_FILE
+      NAMES ${COMPONENT}
+      HINTS ${search_dirs}
+      PATH_SUFFIXES zstd/bin
+    )
+
+    LIST(APPEND ZSTD_FILES "${ZSTD_${COMPONENT}_FILE}")
+  ENDFOREACH()
+ENDIF()
+
+set(ZSTD_DEPS
+)
+add_dep_for_libray_N(zstd "${ZSTD_DEPS}")
+
+INCLUDE(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(ZSTD DEFAULT_MSG
+  ZSTD_LIBRARY ZSTD_INCLUDE_DIR)
+
+IF(ZSTD_FOUND)
+  SET(ZSTD_LIBRARIES ${ZSTD_LIBRARY})
+  SET(ZSTD_INCLUDE_DIRS ${ZSTD_INCLUDE_DIR})
+ENDIF(ZSTD_FOUND)
+
+MARK_AS_ADVANCED(
+  ZSTD_INCLUDE_DIR
+  ZSTD_LIBRARY
+)
+
+

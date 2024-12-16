@@ -31,6 +31,8 @@ pkg_check_modules(OPENSSL REQUIRED libssl;libcrypto)
 pkg_check_modules(SSH2 REQUIRED libssh2)
 pkg_check_modules(FFMPEG REQUIRED libva;libavcodec;libavfilter;libavformat;libavutil;libswscale;libswresample)
 pkg_check_modules(GSTREAMER REQUIRED gstreamer-1.0;gstreamer-video-1.0)
+pkg_check_modules(LIBDWARF REQUIRED libdwarf)
+pkg_check_modules(ZSTD REQUIRED libzstd)
 
 find_package(glad REQUIRED)
 find_package(tinyexpr REQUIRED)

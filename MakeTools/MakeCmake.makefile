@@ -104,7 +104,18 @@ check-leak:
 		--log-file=./check.log \
 		--leak-resolution=high \
 		--show-leak-kinds=all \
-		--show-reachable=no \
+		--show-reachable=yes \
+		--suppressions=/usr/share/glib-2.0/valgrind/glib.supp  \
+		--suppressions=cst.supp  \
+		${ARGS}
+
+check-vgdb:
+	@export G_DEBUG=gc-friendly
+	@export G_SLICE=always-malloc
+	valgrind --leak-check=full \
+		--log-file=./check.log \
+		--vgdb=yes \
+		--vgdb-error=0 \
 		--suppressions=/usr/share/glib-2.0/valgrind/glib.supp  \
 		--suppressions=cst.supp  \
 		${ARGS}

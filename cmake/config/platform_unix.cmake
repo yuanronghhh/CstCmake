@@ -33,7 +33,7 @@ pkg_check_modules(FFMPEG REQUIRED libva;libavcodec;libavfilter;libavformat;libav
 pkg_check_modules(GSTREAMER REQUIRED gstreamer-1.0;gstreamer-video-1.0)
 pkg_check_modules(LIBDWARF REQUIRED libdwarf)
 pkg_check_modules(ZSTD REQUIRED libzstd)
-pkg_check_modules(LIBUNWIND REQUIRED libunwind)
+pkg_check_modules(LZMA REQUIRED liblzma)
 
 find_package(glad REQUIRED)
 find_package(tinyexpr REQUIRED)
@@ -41,6 +41,7 @@ find_package(unity REQUIRED)
 find_package(sdl3 REQUIRED)
 find_package(cglm REQUIRED)
 find_package(system REQUIRED)
+find_package(libunwind REQUIRED)
 
 set(MPG123_LIBRARIES "mpg123")
 

@@ -56,10 +56,11 @@ build-win32:
 	@cmake --build "${BUILD_DIR}" --config ${BUILD_TYPE}
 
 build-win32-prj:
-	@echo "[build project] ..."
+	@echo "[build project] ${PROJ_NAME}"
 	@cmake --build "${BUILD_DIR}" --config ${BUILD_TYPE} --target ${PROJ_NAME}
 
 build-linux-prj:
+	@echo "[build project] ${PROJ_NAME}"
 	@${MAKE} -C "$(BUILD_DIR)" -s -j8 ${PROJ_NAME}
 
 debug:

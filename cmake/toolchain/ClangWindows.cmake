@@ -3,7 +3,7 @@ if(NOT EXISTS "${LLVM_HOME}")
   message(FATAL_ERROR "Require LLVM_BIN for ClangWindows ToolChain")
 endif()
 STRING(REPLACE "\\" "/" LLVM_HOME ${LLVM_HOME})
-set(LLVM_VERSION "18.1.4")
+set(LLVM_VERSION "19.1.6")
 
 set(CMAKE_SYSTEM_NAME Windows)
 set(CMAKE_SYSTEM_VERSION 10.0)

@@ -41,6 +41,7 @@ find_package(vld REQUIRED)
 find_package(nanovg REQUIRED)
 find_package(zstd REQUIRED)
 find_package(libdwarf REQUIRED)
+find_package(nanomsg REQUIRED)
 
 # find_package(sdl2 REQUIRED)
 find_package(sdl3 REQUIRED)

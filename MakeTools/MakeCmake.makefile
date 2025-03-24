@@ -70,7 +70,7 @@ debugcli:
 	@echo ${ARGS}
 	@${DEBUGGER} ${ARGS}
 
-run:
+run: build-${PLATFORM}-prj
 	@echo ${ARGS}
 	@${ARGS}
 

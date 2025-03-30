@@ -7,3 +7,5 @@ set(ANDROID_LIBRARIES
   "android"
   "log"
 )
+
+message(STATUS "load android")

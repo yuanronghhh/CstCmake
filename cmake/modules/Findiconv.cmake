@@ -11,7 +11,7 @@ FIND_PATH(ICONV_INCLUDE_DIR
 )
 
 FIND_LIBRARY(ICONV_LIBRARY
-  NAMES iconv.lib
+  NAMES iconv
   HINTS ${search_dirs}
   PATH_SUFFIXES lib64 lib libiconv/lib
 )

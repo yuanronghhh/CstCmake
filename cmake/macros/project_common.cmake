@@ -35,6 +35,16 @@ function(add_deps_options_N
   set(_LIBS "")
   set(_FILES "")
 
+  foreach(_INC ${INNER_INCS})
+    get_filename_component(_ABS_INC ${_INC} ABSOLUTE)
+
+    list(APPEND _INCS "${_ABS_INC}")
+  endforeach()
+
+  foreach(_LIB ${INNER_LIBS})
+    list(APPEND _LIBS "${_LIB}")
+  endforeach()
+
   foreach(_LIB ${EXTERNAL_LIBS})
     string(TOUPPER ${_LIB} _UPPER_LIB)
     set(_DIR_VAR ${${_UPPER_LIB}_INCLUDE_DIRS})
@@ -44,21 +54,12 @@ function(add_deps_options_N
     list(APPEND _FILES "${${_UPPER_LIB}_FILES}")
   endforeach()
 
-  foreach(_LIB ${INNER_INCS})
-    get_filename_component(_ABS_INC ${_LIB} ABSOLUTE)
-
-    list(APPEND _INCS "${_ABS_INC}")
-  endforeach()
-
-  foreach(_LIB ${INNER_LIBS})
-    list(APPEND _LIBS "${_LIB}")
-  endforeach()
-
   LIST(APPEND _LIBS ${EXTERNAL_OPTIONS})
   list(REMOVE_DUPLICATES _INCS)
   list(REMOVE_DUPLICATES _LIBS)
   list(REMOVE_DUPLICATES _FILES)
 
+  log("${_LIBS}")
   include_directories(${_INCS})
   IF ("${INNER_LIBS}" STREQUAL "")
   else()

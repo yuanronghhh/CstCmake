@@ -47,3 +47,4 @@ set(MPG123_LIBRARIES "mpg123")
 
 set(ADDTIONAL_LIBRARIES "-lpthread -lexpat -lm -lrt -lrt -luuid")
 list(APPEND GTK_LIBRARIES ${ADDTIONAL_LIBRARIES})
+message(STATUS "load unix")

@@ -13,8 +13,11 @@ DEBUGGER:=gdb
 ifeq ($(OS), Linux)
 	PLATFORM:=linux
 	BIN_SURFIX=
-else
+else ifeq ($(OS), windows)
 	PLATFORM:=win32
+	BIN_SURFIX:=.exe
+else
+	PLATFORM:=msys
 	BIN_SURFIX:=.exe
 endif
 
@@ -24,7 +27,7 @@ CMAKE_CONFIG = cmake $(BUILD_CMAKE_ARGS) \
                       -B"$(BUILD_DIR)" \
                       -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
 
-build-all: build-${PLATFORM}-prj
+build-all: config build-${PLATFORM}-prj 
 
 config:
 	@${CMAKE_CONFIG}
@@ -51,6 +54,10 @@ build-linux:
 	@echo "[build] ..."
 	@${MAKE} -C "$(BUILD_DIR)" -s -j8
 
+build-msys:
+	@echo "[build] ..."
+	@${MAKE} -C "$(BUILD_DIR)" -s -j8
+
 build-win32:
 	@echo "[build win32] ..."
 	@cmake --build "${BUILD_DIR}" --config ${BUILD_TYPE}
@@ -60,6 +67,10 @@ build-win32-prj:
 	@cmake --build "${BUILD_DIR}" --config ${BUILD_TYPE} --target ${PROJ_NAME}
 
 build-linux-prj:
+	@echo "[build project] ${PROJ_NAME}"
+	@${MAKE} -C "$(BUILD_DIR)" -s -j8 ${PROJ_NAME}
+
+build-msys-prj:
 	@echo "[build project] ${PROJ_NAME}"
 	@${MAKE} -C "$(BUILD_DIR)" -s -j8 ${PROJ_NAME}
 

@@ -1,7 +1,7 @@
 PROJECT_DIR:=$(shell pwd -P)
 BUILD_DIR:=${PROJECT_DIR}/build
-OS:=$(shell uname -s)
-PLATFORM:=
+OS:=$(shell uname -o)
+PLATFORM:=$(shell uname -s)
 OS_NCASE:=$(shell uname -s | /usr/bin/tr '[A-Z]' '[a-z]')
 BUILD_TYPE:=Debug
 BIN_SURFIX:=
@@ -13,7 +13,7 @@ DEBUGGER:=gdb
 ifeq ($(OS), Linux)
 	PLATFORM:=linux
 	BIN_SURFIX=
-else ifeq ($(OS), windows)
+else ifeq ($(OS), Msys)
 	PLATFORM:=win32
 	BIN_SURFIX:=.exe
 else

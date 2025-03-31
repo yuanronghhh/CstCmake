@@ -59,7 +59,6 @@ function(add_deps_options_N
   list(REMOVE_DUPLICATES _LIBS)
   list(REMOVE_DUPLICATES _FILES)
 
-  log("${_LIBS}")
   include_directories(${_INCS})
   IF ("${INNER_LIBS}" STREQUAL "")
   else()

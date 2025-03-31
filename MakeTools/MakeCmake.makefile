@@ -14,10 +14,10 @@ ifeq ($(OS), Linux)
 	PLATFORM:=linux
 	BIN_SURFIX=
 else ifeq ($(OS), Msys)
-	PLATFORM:=win32
+	PLATFORM:=msys
 	BIN_SURFIX:=.exe
 else
-	PLATFORM:=msys
+	PLATFORM:=win32
 	BIN_SURFIX:=.exe
 endif
 

@@ -24,9 +24,9 @@ CMAKE_CONFIG = cmake $(BUILD_CMAKE_ARGS) \
                       -B"$(BUILD_DIR)" \
                       -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
 
-all: build-${PLATFORM}
-
 build: build-${PLATFORM}-prj
+
+all: build-${PLATFORM}
 
 config:
 	@${CMAKE_CONFIG}
@@ -80,7 +80,7 @@ debugcli:
 	@echo ${ARGS}
 	@${DEBUGGER} ${ARGS}
 
-run: build-${PLATFORM}-prj
+run:
 	@echo ${ARGS}
 	@${ARGS}
 

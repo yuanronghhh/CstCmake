@@ -107,7 +107,7 @@ if(USE_LLVM)
   set(ADDTIONAL_LIBRARIES "")
 endif()
 
-if(MSVC)
+if(USE_MSVC)
   add_definitions("/MT")
   add_definitions("/MP")
   add_definitions("/W3")

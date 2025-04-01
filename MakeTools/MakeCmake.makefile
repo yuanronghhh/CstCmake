@@ -13,9 +13,6 @@ DEBUGGER:=gdb
 ifeq ($(OS), Linux)
 	PLATFORM:=linux
 	BIN_SURFIX=
-else ifeq ($(OS), Msys)
-	PLATFORM:=msys
-	BIN_SURFIX:=.exe
 else
 	PLATFORM:=win32
 	BIN_SURFIX:=.exe
@@ -27,7 +24,9 @@ CMAKE_CONFIG = cmake $(BUILD_CMAKE_ARGS) \
                       -B"$(BUILD_DIR)" \
                       -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
 
-build-all: config build-${PLATFORM}-prj 
+all: build-${PLATFORM}
+
+build: build-${PLATFORM}-prj
 
 config:
 	@${CMAKE_CONFIG}
@@ -141,4 +140,4 @@ check-thread:
 		--suppressions=cst.supp  \
 		${ARGS}
 
-.PHONY: editor-config re-config config clean build-all build-tags install release
+.PHONY: editor-config re-config config clean build all build-tags install release
